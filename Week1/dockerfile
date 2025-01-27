@@ -1,8 +1,10 @@
 FROM python:3.9.1
 
-RUN apt-get install weget
-RUN pip install pip install pandas sqlalchemy psycopg2 pyarrow
-WORKDIR /APP
-COPY ./ingest_green_tripdata.py /APP/ingest_green_tripdata.py
+
+RUN apt-get update && apt-get install -y wget
+RUN pip install pandas psycopg2 pyarrow
+RUN pip install sqlalchemy  
+WORKDIR /app
+COPY ingest_green_tripdata.py ingest_green_tripdata.py
 
 ENTRYPOINT [ "python", "ingest_green_tripdata.py" ]

@@ -2,7 +2,7 @@ import argparse
 import os 
 import pandas as pd
 import numpy as np
-import sqlachemy as sqla
+import sqlalchemy as sqla
 
 def main(params):
     user = params.user
@@ -18,28 +18,28 @@ def main(params):
     lookup_csv_file = 'taxi_zone_lookup.csv'
      
    
-    csv_file_path = os.path.join(csv_path, csv_file)
-    lookup_csv_file_path = os.path.join(csv_path, lookup_csv_file)
+    # # csv_file_path = os.path.join(csv_path, csv_file)
+    # # lookup_csv_file_path = os.path.join(csv_path, lookup_csv_file)
 
+    # print(csv_file_path)
     # Download the main CSV file
-    os.system(f'wget {url} -O {csv_file_path}')
+    os.system(f'wget {url} -O {csv_file}')
     print(f'Downloaded {csv_file} from {url}')
 
     # Download the lookup CSV file
-    os.system(f'wget {lookup_url} -O {lookup_csv_file_path}')
+    os.system(f'wget {lookup_url} -O {lookup_csv_file}')
     print(f'Downloaded {lookup_csv_file} from {lookup_url}')
     
     engine = sqla.create_engine(f'postgresql://{user}:{password}@{host}:{port}/{database}') 
     
-    lookup_df = pd.read_csv(lookup_csv_file_path)
+    lookup_df = pd.read_csv(lookup_csv_file)
     lookup_df.to_sql('taxi_zone_lookup', engine, if_exists='replace', index=False)
-    print(f'Loaded {lookup_csv_file} to PostgreSQL table taxi_zone_lookup')
      
-    df_itr = pd.read_csv(csv_file_path, chunksize=100000)
+    df_itr = pd.read_csv(csv_file, compression="gzip", chunksize=100000)
     df = next(df_itr)
     # Convert datetime columns
     df['lpep_pickup_datetime'] = pd.to_datetime(df['lpep_pickup_datetime'])
-    df['lpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dlpep_dropoff_datetimeropoff_datetime'])
+    df['lpep_dropoff_datetime'] = pd.to_datetime(df['lpep_dropoff_datetime'])
 
     # Create the table and insert the first chunk
     df.head(0).to_sql(name=table_name, con=engine, if_exists='replace', index=False)

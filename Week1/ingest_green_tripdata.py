@@ -18,11 +18,6 @@ def main(params):
     lookup_csv_file = 'taxi_zone_lookup.csv'
      
    
-    # # csv_file_path = os.path.join(csv_path, csv_file)
-    # # lookup_csv_file_path = os.path.join(csv_path, lookup_csv_file)
-
-    # print(csv_file_path)
-    # Download the main CSV file
     os.system(f'wget {url} -O {csv_file}')
     print(f'Downloaded {csv_file} from {url}')
 

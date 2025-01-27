@@ -1,4 +1,7 @@
-# Week 1
+# Week 1 Homework
+```bash
+https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/2025/01-docker-terraform/homework.md
+```
 
 ## **Question 1: Understanding Docker First Run**
 

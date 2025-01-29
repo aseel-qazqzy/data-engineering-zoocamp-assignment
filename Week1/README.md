@@ -1,9 +1,6 @@
 # Week 1
-
-## **Question 1: Understanding Docker First Run**
-
-### Run Docker in Interactive Mode:
-```bash
+**Question 1. Understanding docker first run:**
+**- Run docker in intractive mode:**
 docker run -it --entrypoint=bash python:3.12.8
 ```
 

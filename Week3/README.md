@@ -12,7 +12,6 @@ This repository contains SQL queries for managing and analyzing NYC Yellow Taxi 
   - [Get Unique Vendor IDs (Non-Partitioned Table)](#get-unique-vendor-ids-non-partitioned-table)
   - [Get Unique Vendor IDs (Partitioned Table)](#get-unique-vendor-ids-partitioned-table)
   - [Check Table Partitions](#check-table-partitions)
-- [License](#license)
 
 ## Overview
 
@@ -82,5 +81,4 @@ ORDER BY partition_id DESC;
 
 ---
 
-## License
-This project is open-source and can be freely used or modified.
+
